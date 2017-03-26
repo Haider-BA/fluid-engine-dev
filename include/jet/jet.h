@@ -80,6 +80,7 @@
 #include <jet/flip_solver3.h>
 #include <jet/fmm_level_set_solver2.h>
 #include <jet/fmm_level_set_solver3.h>
+#include <jet/functors.h>
 #include <jet/grid2.h>
 #include <jet/grid3.h>
 #include <jet/grid_backward_euler_diffusion_solver2.h>
@@ -133,6 +134,8 @@
 #include <jet/matrix2x2.h>
 #include <jet/matrix3x3.h>
 #include <jet/matrix4x4.h>
+#include <jet/matrix_mxn.h>
+#include <jet/mg.h>
 #include <jet/parallel.h>
 #include <jet/particle_emitter2.h>
 #include <jet/particle_emitter3.h>
@@ -215,6 +218,7 @@
 #include <jet/vector_field3.h>
 #include <jet/vector_grid2.h>
 #include <jet/vector_grid3.h>
+#include <jet/vector_n.h>
 #include <jet/vertex_centered_scalar_grid2.h>
 #include <jet/vertex_centered_scalar_grid3.h>
 #include <jet/vertex_centered_vector_grid2.h>

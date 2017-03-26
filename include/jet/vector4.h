@@ -8,6 +8,7 @@
 #define INCLUDE_JET_VECTOR4_H_
 
 #include <jet/vector3.h>
+
 #include <algorithm>  // just make cpplint happy..
 #include <limits>
 
@@ -23,9 +24,8 @@ namespace jet {
 template <typename T>
 class Vector<T, 4> final {
  public:
-    static_assert(
-        std::is_floating_point<T>::value,
-        "Vector only can be instantiated with floating point types");
+    static_assert(std::is_floating_point<T>::value,
+                  "Vector only can be instantiated with floating point types");
 
     //! X (or the first) component of the vector.
     T x;
@@ -204,9 +204,8 @@ class Vector<T, 4> final {
     bool isEqual(const Vector& other) const;
 
     //! Returns true if \p other is similar to this vector.
-    bool isSimilar(
-        const Vector& other,
-        T epsilon = std::numeric_limits<T>::epsilon()) const;
+    bool isSimilar(const Vector& other,
+                   T epsilon = std::numeric_limits<T>::epsilon()) const;
 
     // MARK: Operators
 
@@ -220,7 +219,7 @@ class Vector<T, 4> final {
     template <typename U>
     Vector& operator=(const std::initializer_list<U>& lst);
 
-    //! Set x and y with other vector \p pt.
+    //! Set x and y with other vector \p v.
     Vector& operator=(const Vector& v);
 
     //! Computes this += (v, v)
@@ -254,9 +253,9 @@ class Vector<T, 4> final {
     bool operator!=(const Vector& v) const;
 };
 
-
 //! Type alias for four dimensional vector.
-template <typename T> using Vector4 = Vector<T, 4>;
+template <typename T>
+using Vector4 = Vector<T, 4>;
 
 //! Positive sign operator.
 template <typename T>
@@ -269,6 +268,10 @@ Vector4<T> operator-(const Vector4<T>& a);
 //! Computes (a, a, a, a) + (b.x, b.y, b.z, b.w).
 template <typename T>
 Vector4<T> operator+(T a, const Vector4<T>& b);
+
+//! Computes (a.x, a.y, a.z, a.w) + (b, b, b, b).
+template <typename T>
+Vector4<T> operator+(const Vector4<T>& a, T b);
 
 //! Computes (a.x, a.y, a.z, a.w) + (b.x, b.y, b.z, b.w).
 template <typename T>
@@ -320,8 +323,8 @@ Vector4<T> max(const Vector4<T>& a, const Vector4<T>& b);
 
 //! Returns element-wise clamped vector.
 template <typename T>
-Vector4<T> clamp(
-    const Vector4<T>& v, const Vector4<T>& low, const Vector4<T>& high);
+Vector4<T> clamp(const Vector4<T>& v, const Vector4<T>& low,
+                 const Vector4<T>& high);
 
 //! Returns element-wise ceiled vector.
 template <typename T>
@@ -359,12 +362,8 @@ struct ScalarType<Vector4<T>> {
 
 //! Computes monotonic Catmull-Rom interpolation.
 template <typename T>
-Vector4<T> monotonicCatmullRom(
-    const Vector4<T>& v0,
-    const Vector4<T>& v1,
-    const Vector4<T>& v2,
-    const Vector4<T>& v3,
-    T f);
+Vector4<T> monotonicCatmullRom(const Vector4<T>& v0, const Vector4<T>& v1,
+                               const Vector4<T>& v2, const Vector4<T>& v3, T f);
 
 }  // namespace jet
 
