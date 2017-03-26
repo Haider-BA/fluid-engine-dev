@@ -6,7 +6,6 @@
 
 #include <jet/array1.h>
 #include <jet/array2.h>
-#include <jet/math_utils.h>
 #include <jet/mg.h>
 
 #include <gtest/gtest.h>
@@ -46,6 +45,9 @@ void relax(const typename BlasType::MatrixType& a,
            unsigned int numberOfIterations, double maxTolerance,
            typename BlasType::VectorType* x,
            typename BlasType::VectorType* buffer) {
+    (void)maxTolerance;
+    (void)buffer;
+
     size_t n = a.width();
     for (unsigned int iter = 0; iter < numberOfIterations; ++iter) {
         x->forEachIndex([&](size_t i) {
@@ -72,7 +74,6 @@ void rest(const typename BlasType::VectorType& finer,
         size_t _2ip2 = (i + 1 < n) ? 2 * i + 2 : 2 * i;
         (*coarser)[i] = 0.125 * (finer[_2im1] + 3.0 * finer[2 * i] +
                                  3.0 * finer[2 * i + 1] + finer[_2ip2]);
-        (void)i;
     });
 }
 

@@ -656,12 +656,12 @@ void MatrixMxN<T>::invert() {
             }
         }
 
-        // Scale this row
-        for (size_t i = 0; i < n; ++i) {
-            T c = 1 / a(i, i);
+        // Scale
+        for (size_t k = 0; k < n; ++k) {
+            T c = 1 / a(k, k);
             for (size_t j = 0; j < n; ++j) {
-                a(i, j) *= c;
-                rhs(i, j) *= c;
+                a(k, j) *= c;
+                rhs(k, j) *= c;
             }
         }
     }

@@ -16,10 +16,7 @@
 #include <tbb/parallel_reduce.h>
 #endif
 
-#include <algorithm>
-#include <functional>
 #include <random>
-#include <vector>
 
 using namespace jet;
 
@@ -108,8 +105,8 @@ TEST(Parallel, Reduce) {
         a[i] = d(rng);
     }
 
-    auto func = [&](size_t start, size_t end, auto init) {
-        auto result = init;
+    auto func = [&](size_t start, size_t end, double init) {
+        double result = init;
         for (size_t i = start; i < end; ++i) {
             result += a[i];
         }

@@ -6,15 +6,11 @@
 
 #include <jet/array2.h>
 #include <jet/array3.h>
-#include <jet/constants.h>
-#include <jet/parallel.h>
 
 #include <gtest/gtest.h>
 
-#include <algorithm>
-#include <functional>
+#include <numeric>
 #include <random>
-#include <vector>
 
 using namespace jet;
 
@@ -121,7 +117,7 @@ TEST(Parallel, Sort) {
     }
 
     parallelSort(idx.begin(), idx.end(),
-                 [&](size_t a, size_t b) { return c[a] < c[b]; });
+                 [&](size_t i1, size_t i2) { return c[i1] < c[i2]; });
 
     for (size_t i = 0; i + 1 < a.size(); ++i) {
         EXPECT_LE(c[idx[i]], c[idx[i + 1]]);
